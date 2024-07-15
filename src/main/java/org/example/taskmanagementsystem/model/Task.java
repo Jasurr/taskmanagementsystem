@@ -1,16 +1,21 @@
 package org.example.taskmanagementsystem.model;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.data.util.Lazy;
 
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Getter
 @Setter
 @NoArgsConstructor
+@AllArgsConstructor
 public class Task {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -25,4 +30,11 @@ public class Task {
     private Date createdDate;
     private Date dueDate;
 
+    @ManyToMany
+    @JoinTable(
+            name = "task_users",
+            joinColumns = @JoinColumn(name = "task_id"),
+            inverseJoinColumns = @JoinColumn(name = "user_id")
+    )
+    private Set<AppUser> users = new HashSet<>();
 }
