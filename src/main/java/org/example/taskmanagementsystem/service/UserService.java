@@ -72,4 +72,7 @@ public class UserService implements UserDetailsService {
     }
 
 
+    public Optional<AppUser> findByUserId(Long userId) {
+        return userRepository.findById(userId);
+    }
 }

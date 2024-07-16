@@ -11,11 +11,8 @@ import java.util.Set;
 @Getter
 @Setter
 public class AppUserGetDto {
-    @JsonProperty("id")
     private Long id;
-    @JsonProperty("username")
     private String username;
-    @JsonProperty("email")
     private String email;
     private Set<UserRoles> roles;
 }
